@@ -47,3 +47,16 @@ market_coverage_volume = market_data_cleaned[market_data_cleaned['Trading_Pair']
 market_coverage = (market_coverage_volume / total_market_volume) * 100
 
 market_share, addressable_market_share, market_coverage
+
+# ---------------------------------------------------------------
+exchange_volumes = market_data_cleaned.groupby('Exchange')['Volume'].sum().sort_values(ascending=False)
+
+top_competitors = exchange_volumes.head(5)
+
+competitors_data = market_data_cleaned[market_data_cleaned['Exchange'].isin(top_competitors.index)]
+
+volume_distribution = competitors_data.pivot_table(index='Trading_Pair', columns='Exchange', values='Volume', aggfunc='sum', fill_value=0)
+
+volume_distribution_normalized = volume_distribution.div(volume_distribution.sum(axis=0), axis=1) * 100
+
+top_competitors, volume_distribution_normalized.head(10)
