@@ -85,6 +85,6 @@ axs[2, 1].legend()
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 # Save the report to a file, you can change the file path
-plt.savefig('INSERT YOUR FILE PATH HERE')
+plt.savefig('Task3/Report')
 
 plt.show()
