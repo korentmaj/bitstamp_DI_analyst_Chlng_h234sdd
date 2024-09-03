@@ -60,3 +60,5 @@ volume_distribution = competitors_data.pivot_table(index='Trading_Pair', columns
 volume_distribution_normalized = volume_distribution.div(volume_distribution.sum(axis=0), axis=1) * 100
 
 top_competitors, volume_distribution_normalized.head(10)
+
+

@@ -24,18 +24,6 @@ Based on the cleaned data, the following key metrics were calculated:
 
 - **Result**: Bitstamp's volume accounts for approximately **0.0061%** of the total market volume.
 
-### b. Addressable Market Share
-
-- **Definition**: Addressable Market Share is the percentage of Bitstamp's trading volume out of the total market volume on trading pairs that are available for trading on Bitstamp.
-- **Calculation**:
-  - **Bitstamp Trading Pairs**: Identify all unique trading pairs available on Bitstamp.
-  - **Addressable Market Volume**: The sum of trading volumes for these identified pairs across all exchanges.
-  - **Formula**: `Addressable Market Share = (Bitstamp Volume / Addressable Market Volume) * 100`
-
-- **Result**: Initially calculated as **0.0061%**. 
-
-- **Potential Issue**: If the addressable market share is the same as the overall market share, it may indicate that the trading pairs on Bitstamp are not unique to Bitstamp and are traded similarly on other exchanges, or there was an error in calculating the addressable market volume. This metric should typically be higher than the overall market share since it only considers pairs where Bitstamp is actively trading.
-
 ### c. Market Coverage
 
 - **Definition**: Market Coverage is the percentage of the total market volume that is generated on base assets supported by Bitstamp.
@@ -66,7 +54,4 @@ Based on the cleaned data, the following key metrics were calculated:
   - **Market Focus**: Bitstamp's focus on certain base assets may result in a higher market coverage but a lower overall market share due to less diversity in trading pairs.
   - **Volume Concentration**: The concentration of trading volume in specific pairs can indicate where Bitstamp is most competitive or where it may need to expand its offerings to gain a larger market share.
 
-### Final Insights
-
-- **Addressable Market Share Issue**: The addressable market share being identical to the overall market share suggests that Bitstamp's influence is proportionate across its trading pairs. This might require further investigation into whether Bitstamp’s offerings are unique or if the calculation needs adjustment to accurately reflect the targeted market.
 
