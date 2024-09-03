@@ -1,0 +1,11 @@
+SELECT 
+    SUM(T.daily_trading_volume) AS total_volume
+FROM 
+    Task_2_trading_volume T
+JOIN 
+    Task_2_userprofile U
+ON 
+    T.unique_id = U.unique_id
+WHERE 
+    U.country = 'NL'
+    AND T.date = '2022-12-06';

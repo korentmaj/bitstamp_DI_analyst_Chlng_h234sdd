@@ -1,0 +1,26 @@
+WITH VolumeByEntity AS (
+    SELECT 
+        U.unique_id,
+        E.entity,
+        T.date,
+        T.daily_trading_volume
+    FROM 
+        Task_2_trading_volume T
+    JOIN 
+        Task_2_userprofile U
+    ON 
+        T.unique_id = U.unique_id
+    JOIN 
+        Task_2_entites_mapping E
+    ON 
+        U.country = E.country
+    WHERE 
+        T.date BETWEEN '2022-12-01' AND '2022-12-31'
+)
+SELECT 
+    entity,
+    SUM(daily_trading_volume) AS total_volume
+FROM 
+    VolumeByEntity
+GROUP BY 
+    entity;

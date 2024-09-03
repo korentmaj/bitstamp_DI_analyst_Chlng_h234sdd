@@ -1,0 +1,24 @@
+WITH CurrentEntity AS (
+    SELECT 
+        U.unique_id,
+        U.country,
+        E.entity AS correct_entity
+    FROM 
+        Task_2_userprofile U
+    JOIN 
+        Task_2_entites_mapping E
+    ON 
+        U.country = E.country
+)
+SELECT 
+    COUNT(*) AS clients_on_wrong_entity
+FROM 
+    Task_2_userprofile U
+JOIN 
+    CurrentEntity C
+ON 
+    U.unique_id = C.unique_id
+WHERE 
+    U.date_changed IS NOT NULL
+    AND U.date_changed <= '2022-12-27'
+    AND C.correct_entity != E.entity;
