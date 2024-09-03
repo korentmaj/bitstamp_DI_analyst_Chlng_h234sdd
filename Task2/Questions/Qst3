@@ -1,25 +1,21 @@
+-- Volume Per Entity for December 2022
 WITH VolumeByEntity AS (
     SELECT 
-        U.unique_id,
-        E.entity,
-        T.date,
+        T.unique_id,
+        C.current_entity AS entity,
         T.daily_trading_volume
     FROM 
-        Task_2_trading_volume T
+        task2_trading_volume T
     JOIN 
-        Task_2_userprofile U
+        Client_Profile C
     ON 
-        T.unique_id = U.unique_id
-    JOIN 
-        Task_2_entites_mapping E
-    ON 
-        U.country = E.country
+        T.unique_id = C.unique_id
     WHERE 
         T.date BETWEEN '2022-12-01' AND '2022-12-31'
 )
 SELECT 
     entity,
-    SUM(daily_trading_volume) AS total_volume
+    SUM(daily_trading_volume) AS total_volume_dec_2022
 FROM 
     VolumeByEntity
 GROUP BY 

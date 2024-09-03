@@ -1,24 +1,23 @@
-WITH CurrentEntity AS (
+-- Clients on the Wrong Entity on 2022-12-27
+WITH WrongEntityClients AS (
     SELECT 
-        U.unique_id,
-        U.country,
+        C.unique_id,
+        C.current_country,
+        C.current_entity,
         E.entity AS correct_entity
     FROM 
-        Task_2_userprofile U
+        Client_Profile C
     JOIN 
-        Task_2_entites_mapping E
+        task2_entities_mapping E
     ON 
-        U.country = E.country
+        C.current_country = E.country
+    WHERE 
+        C.date_of_last_change IS NOT NULL
+        AND C.date_of_last_change <= '2022-12-27'
 )
 SELECT 
     COUNT(*) AS clients_on_wrong_entity
 FROM 
-    Task_2_userprofile U
-JOIN 
-    CurrentEntity C
-ON 
-    U.unique_id = C.unique_id
+    WrongEntityClients
 WHERE 
-    U.date_changed IS NOT NULL
-    AND U.date_changed <= '2022-12-27'
-    AND C.correct_entity != E.entity;
+    current_entity != correct_entity;

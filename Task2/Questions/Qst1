@@ -1,11 +1,12 @@
+-- Volume of NL Clients on 2022-12-06
 SELECT 
-    SUM(T.daily_trading_volume) AS total_volume
+    SUM(T.daily_trading_volume) AS total_volume_nl_2022_12_06
 FROM 
-    Task_2_trading_volume T
+    task2_trading_volume T
 JOIN 
-    Task_2_userprofile U
+    Client_Profile C
 ON 
-    T.unique_id = U.unique_id
+    T.unique_id = C.unique_id
 WHERE 
-    U.country = 'NL'
+    C.current_country = 'NL'
     AND T.date = '2022-12-06';
