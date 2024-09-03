@@ -88,13 +88,14 @@ def generate_bitstamp_report(date_str):
     
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
+    formatted_date = pd.to_datetime(date_str, format='%d/%m/%Y').strftime('%d%m%Y')
+
     # Save the report as an image file CHANGE THE FILE PATH IF NEEDED
-    file_name = f'Task3/Report/bitstamp_daily_report_{report_date.strftime("%Y-%m-%d")}.png'
-    plt.savefig(file_name)
+    # ReportDDMMYYYY.png
+
+    plt.savefig(f'Task3/Reports/Report{formatted_date}.png')
     
     plt.show()
     
-    print(f"Report saved as {file_name}")
-
 # SET A CUSTOM DATE TO GENERATE THE REPORT
-generate_bitstamp_report('31/12/2022')
+generate_bitstamp_report('25/12/2022')
