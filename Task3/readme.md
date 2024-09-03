@@ -18,3 +18,7 @@ Ensure you have the following libraries installed:
 
 ```bash
 pip install pandas matplotlib
+```
+
+### 2. Install Dependencies
+- **Ensure you have Python installed on your machine. Then, install the required Python libraries:
