@@ -85,7 +85,8 @@ def generate_bitstamp_report(date_str):
     axs[2, 1].set_title('7-Day Average New Registered Clients')
     axs[2, 1].legend()
     
-    
+    plt.figtext(0.5, 0.01, 'Contact Information: GitHub - https://github.com/korentmaj', ha='center', fontsize=13)
+
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
     formatted_date = pd.to_datetime(date_str, format='%d/%m/%Y').strftime('%d%m%Y')
@@ -98,4 +99,4 @@ def generate_bitstamp_report(date_str):
     plt.show()
     
 # SET A CUSTOM DATE TO GENERATE THE REPORT
-generate_bitstamp_report('25/12/2022')
+generate_bitstamp_report('05/12/2022')
