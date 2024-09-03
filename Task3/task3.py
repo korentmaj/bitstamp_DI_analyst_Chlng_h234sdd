@@ -26,3 +26,65 @@ report_data = bitstamp_data[bitstamp_data['date'] == latest_date]
 
 
 report_data
+
+
+
+import matplotlib.pyplot as plt
+
+
+fig, axs = plt.subplots(3, 2, figsize=(14, 18))
+fig.suptitle('Bitstamp Daily Performance Report - 31st December 2022', fontsize=16)
+
+
+axs[0, 0].axis('off')
+axs[0, 0].text(0.5, 0.7, 'Corporate Trading Volume', ha='center', fontsize=12)
+axs[0, 0].text(0.5, 0.6, f"${report_data.iloc[0]['trading volume']:,}", ha='center', fontsize=24, color='green')
+axs[0, 0].text(0.5, 0.4, 'Retail Trading Volume', ha='center', fontsize=12)
+axs[0, 0].text(0.5, 0.3, f"${report_data.iloc[1]['trading volume']:,}", ha='center', fontsize=24, color='green')
+
+
+axs[0, 1].axis('off')
+axs[0, 1].text(0.5, 0.7, 'Corporate Active Clients', ha='center', fontsize=12)
+axs[0, 1].text(0.5, 0.6, f"{report_data.iloc[0]['daily_active_clients']:,}", ha='center', fontsize=24, color='blue')
+axs[0, 1].text(0.5, 0.4, 'Retail Active Clients', ha='center', fontsize=12)
+axs[0, 1].text(0.5, 0.3, f"{report_data.iloc[1]['daily_active_clients']:,}", ha='center', fontsize=24, color='blue')
+
+
+axs[1, 0].bar(['BTC Price', 'BTC Dominance'], 
+              [report_data.iloc[0]['btc_price'], report_data.iloc[0]['btc_dominance'] * 100], 
+              color=['orange', 'purple'])
+axs[1, 0].set_title('Market Indicators')
+
+
+axs[1, 1].bar(['Corporate Market Share', 'Retail Market Share'], 
+              [report_data.iloc[0]['market_share'] * 100, report_data.iloc[1]['market_share'] * 100], 
+              color=['teal', 'coral'])
+axs[1, 1].set_title('Market Share (%)')
+
+
+axs[2, 0].plot(bitstamp_data[bitstamp_data['client_type'] == 'corporate']['date'], 
+               bitstamp_data[bitstamp_data['client_type'] == 'corporate']['7_day_avg_trading_volume'], 
+               label='Corporate', color='green')
+axs[2, 0].plot(bitstamp_data[bitstamp_data['client_type'] == 'retail']['date'], 
+               bitstamp_data[bitstamp_data['client_type'] == 'retail']['7_day_avg_trading_volume'], 
+               label='Retail', color='blue')
+axs[2, 0].set_title('7-Day Average Trading Volume')
+axs[2, 0].legend()
+
+
+axs[2, 1].plot(bitstamp_data[bitstamp_data['client_type'] == 'corporate']['date'], 
+               bitstamp_data[bitstamp_data['client_type'] == 'corporate']['7_day_avg_new_clients'], 
+               label='Corporate', color='green')
+axs[2, 1].plot(bitstamp_data[bitstamp_data['client_type'] == 'retail']['date'], 
+               bitstamp_data[bitstamp_data['client_type'] == 'retail']['7_day_avg_new_clients'], 
+               label='Retail', color='blue')
+axs[2, 1].set_title('7-Day Average New Registered Clients')
+axs[2, 1].legend()
+
+# layout
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+
+# Save the report to a file
+plt.savefig('INSERT YOUR FILE PATH HERE')
+
+plt.show()
