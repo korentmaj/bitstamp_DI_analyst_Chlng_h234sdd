@@ -1,5 +1,5 @@
 
-# Crypto Market Data Analysis
+# Market Data Analysis
 
 ## Task Overview
 The goal of this task was to clean and analyze a weekly sample of crypto market data to provide insights related to Bitstamp's market position. The data provided covered spot markets from various exchanges, with the objective to:
