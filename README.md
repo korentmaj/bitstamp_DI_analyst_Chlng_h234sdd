@@ -33,13 +33,6 @@ The goal of Task 1 was to clean a provided dataset of cryptocurrency market data
 
 3. **Competitor Analysis**: Competitors like Binance, Coinbase, and Kraken were identified, and their volume structure compared to Bitstamp's.
 
-### Results:
-- **Market Share**: Bitstamp's volume accounts for approximately **0.0061%** of the total market volume.
-- **Addressable Market Share**: **0.0061%**, although this requires further analysis as it should generally be higher than the total market share.
-- **Market Coverage**: Bitstamp supports **99.42%** of the total market volume in terms of base assets.
-
----
-
 ## Task 2: SQL Queries for Data Analysis
 
 **Objective:**
@@ -80,9 +73,3 @@ The goal of Task 3 was to generate a daily report for Bitstamp's management, sho
 3. **Market Indicators**:
    - Includes Bitcoin price, dominance, and Bitstamp's market share.
 
-### How to Use:
-
-- **Run the Report**: Use the `generate_bitstamp_report('DD/MM/YYYY')` function to generate a report for any specific date.
-- **Custom File Names**: The generated report is automatically saved with the date in the file name, e.g., `Report07122022.png`.
-
----
