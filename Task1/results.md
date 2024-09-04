@@ -1,57 +1,64 @@
-# Task 1: Data Cleaning and Metric Calculation
 
-## 1. Data Cleaning
+# Crypto Market Data Analysis
 
-The first step in this task was to clean the provided market data to ensure it was suitable for analysis. The goal was to create a clean dataset that could be used for any kind of analytics without requiring further manipulation. The steps involved in cleaning the data were:
+## Task Overview
+The goal of this task was to clean and analyze a weekly sample of crypto market data to provide insights related to Bitstamp's market position. The data provided covered spot markets from various exchanges, with the objective to:
 
-- **Column Renaming**: The original columns in the dataset were renamed to more meaningful and descriptive names such as `Date`, `Exchange`, `Market_Type`, `Trading_Pair`, and `Volume`.
-- **Data Type Conversion**: The `Date` column was converted to a proper datetime format, and the `Volume` column was converted to numeric values to ensure accurate calculations.
-- **Handling Missing Data**: Rows with missing values in critical columns (`Date`, `Exchange`, `Market_Type`, `Trading_Pair`, and `Volume`) were removed. Additionally, any rows with non-positive values in the `Volume` column were excluded, as these would skew the analysis.
+1. **Clean the data** for easy usability.
+2. **Calculate key metrics** for reporting:
+   - Market Share (% of Bitstamp volume out of total market volume)
+   - Addressable Market Share (% of Bitstamp volume for pairs available on Bitstamp)
+   - Market Coverage (% of volume generated on base assets that Bitstamp supports)
+3. **Identify direct competitors** to Bitstamp based on the data and analyze its volume structure compared to those exchanges.
 
-After these steps, the data was ready for the calculation of the required metrics.
+## Data Cleaning Process
+Upon reviewing the data, the following steps were taken to clean and standardize it:
 
-## 2. Metric Calculation
+1. **Renaming Columns**: The columns were renamed to be more descriptive.
+2. **Standardizing Trading Pairs**: The trading pairs were made consistent by converting them to lowercase and ensuring all pairs were in the same format (i.e., replacing any `-` with `/`).
+3. **Removing Missing Values**: Rows with missing volume data were removed.
+4. **Ensuring Spot Markets**: The dataset was filtered to ensure only spot markets were considered.
 
-Based on the cleaned data, the following key metrics were calculated:
+After cleaning, the dataset consisted of 11,613 valid rows, and was ready for analysis.
 
-### a. Market Share
+## Metrics Calculation
+### 1. **Market Share**
+Bitstamp's market share was calculated as the percentage of its volume out of the total market volume across all exchanges in the dataset.
 
-- **Definition**: Market Share is the percentage of Bitstamp's trading volume out of the total market volume.
-- **Calculation**:
-  - **Total Market Volume**: The sum of all trading volumes across all exchanges in the dataset.
-  - **Bitstamp Volume**: The sum of trading volumes specifically on the Bitstamp exchange.
-  - **Formula**: `Market Share = (Bitstamp Volume / Total Market Volume) * 100`
+- **Market Share**: **0.92%**
 
-- **Result**: Bitstamp's volume accounts for approximately **0.0061%** of the total market volume.
+### 2. **Addressable Market Share**
+Addressable market share was computed as Bitstamp's percentage of the total volume, but only considering trading pairs that are available for trading on Bitstamp.
 
-### c. Market Coverage
+- **Addressable Market Share**: **2.02%**
 
-- **Definition**: Market Coverage is the percentage of the total market volume that is generated on base assets supported by Bitstamp.
-- **Calculation**:
-  - **Bitstamp Base Assets**: Identify the base currencies (e.g., BTC, ETH) for all trading pairs on Bitstamp.
-  - **Market Coverage Volume**: The sum of trading volumes for all trading pairs across all exchanges where the base currency is supported by Bitstamp.
-  - **Formula**: `Market Coverage = (Market Coverage Volume / Total Market Volume) * 100`
+### 3. **Market Coverage**
+Market coverage was defined as the percentage of the total market volume generated from base assets supported by Bitstamp (e.g., BTC, ETH).
 
-- **Result**: **99.42%** of the total market volume is generated on base assets that Bitstamp supports.
+- **Market Coverage**: **81.11%**
 
-## 3. Competitor Analysis
+This means that Bitstamp supports the vast majority of base assets generating volume in the market, giving it a broad coverage even if its specific share of the trading volume is smaller.
 
-### Identifying Direct Competitors
+## Competitor Analysis
+By analyzing the volume structure across different exchanges, the largest competitors to Bitstamp were identified as follows:
 
-- **Focus**: The analysis focuses on exchanges with a similar business model and target audience as Bitstamp. These would be exchanges that primarily offer spot trading and cater to a similar user base.
-- **Identified Competitors**: Based on the volume data, the direct competitors of Bitstamp include:
-  - **Binance**
-  - **Coinbase**
-  - **Kraken**
-  - **Kucoin**
-  - **Deribit**
+| Exchange  | Volume (USD)      |
+|-----------|-------------------|
+| Binance   | $29.6 billion      |
+| Coinbase  | $3.41 billion      |
+| Kraken    | $1.23 billion      |
+| KuCoin    | $954 million       |
+| **Bitstamp** | **$328 million** |
+| Gemini    | $72.9 million      |
+| Bittrex   | $48.9 million      |
 
-### Volume Structure Comparison
+### Observations:
+- **Binance** dominates the market with a massive lead in trading volume.
+- Bitstamp ranks fifth in terms of volume, with a significantly smaller market share compared to Binance, Coinbase, and Kraken.
+- Bitstamp has a competitive edge in market coverage, with its supported assets accounting for over 80% of the total market volume, despite its lower overall market share.
 
-- **Analysis**: A comparison of the volume distribution across different trading pairs between Bitstamp and its identified competitors.
-- **Observations**:
-  - **Diverse Offerings**: Competitors like Binance have a highly diversified set of trading pairs, which might contribute to their larger market share.
-  - **Market Focus**: Bitstamp's focus on certain base assets may result in a higher market coverage but a lower overall market share due to less diversity in trading pairs.
-  - **Volume Concentration**: The concentration of trading volume in specific pairs can indicate where Bitstamp is most competitive or where it may need to expand its offerings to gain a larger market share.
+## Conclusion
+The analysis provided insight into Bitstamp's position in the market, showing that while it competes in a highly competitive space dominated by larger players like Binance and Coinbase, it still holds a strong position in terms of market coverage. The exchange's ability to support a wide range of high-volume assets gives it an advantage in addressing a large portion of the market.
 
+Further efforts could be directed at increasing its market share and addressable market share through targeted strategies aimed at improving its competitive position in pairs it already supports.
 
