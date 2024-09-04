@@ -1,4 +1,4 @@
--- Create the Client_Profile table
+
 CREATE TABLE Client_Profile (
     unique_id INT PRIMARY KEY,
     current_country VARCHAR(50),
@@ -6,7 +6,7 @@ CREATE TABLE Client_Profile (
     date_of_last_change DATE
 );
 
--- Populate the Client_Profile table
+
 INSERT INTO Client_Profile (unique_id, current_country, current_entity, date_of_last_change)
 SELECT 
     U.unique_id,

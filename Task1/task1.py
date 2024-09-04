@@ -7,6 +7,7 @@ market_data = pd.read_csv(file_path)
 market_data.columns = ['date', 'exchange', 'market_type', 'trading_pair', 'volume']
 
 market_data['volume'] = pd.to_numeric(market_data['volume'], errors='coerce')
+
 market_data['trading_pair'] = market_data['trading_pair'].str.lower().str.replace('-', '/')
 
 cleaned_market_data = market_data.dropna(subset=['volume'])
@@ -26,6 +27,7 @@ market_share = (bitstamp_total_volume / total_market_volume) * 100
 
 
 bitstamp_pairs = bitstamp_data['trading_pair'].unique()
+
 addressable_market_data = cleaned_market_data[cleaned_market_data['trading_pair'].isin(bitstamp_pairs)]
 addressable_market_volume = addressable_market_data['volume'].sum()
 
@@ -33,6 +35,7 @@ addressable_market_share = (bitstamp_total_volume / addressable_market_volume) *
 
 
 bitstamp_base_assets = bitstamp_data['trading_pair'].str.split('/', expand=True)[0].unique()
+
 market_base_assets = cleaned_market_data['trading_pair'].str.split('/', expand=True)[0].isin(bitstamp_base_assets)
 market_coverage_volume = cleaned_market_data[market_base_assets]['volume'].sum()
 
