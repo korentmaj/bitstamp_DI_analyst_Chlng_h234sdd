@@ -50,3 +50,11 @@ print(f"Market Coverage: {market_coverage:.2f}%")
 
 print("\nTop 10 Exchanges by Volume:")
 print(exchange_volume_sorted.head(10))
+
+output_file_path = 'Task1/Filtered_files/task1_results.csv'
+exchange_volume_sorted.to_csv(output_file_path, index=False)
+print(f"\nResults saved to {output_file_path}")
+
+filtered_data_file_path = 'Task1/Filtered_files/task1_filtered_data.csv'
+cleaned_market_data.to_csv(filtered_data_file_path, index=False)
+print(f"Filtered data saved to {filtered_data_file_path}")
