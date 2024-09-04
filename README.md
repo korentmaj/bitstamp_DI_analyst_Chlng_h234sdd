@@ -91,8 +91,3 @@ The goal of Task 3 was to generate a daily report for Bitstamp's management, sho
 - **Custom File Names**: The generated report is automatically saved with the date in the file name, e.g., `Report07122022.png`.
 
 ---
-
-## How to Run the Project
-
-1. Clone this repository:
-
