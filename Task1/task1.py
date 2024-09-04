@@ -1,6 +1,6 @@
 import pandas as pd
 
-file_path = 'path'
+file_path = 'Task1/task1_market_data.csv'
 data = pd.read_csv(file_path)
 
 
@@ -55,5 +55,5 @@ print("Market Coverage: {:.2f}%".format(market_coverage))
 print("\nTop 5 Competitors by Volume:\n", top_competitors)
 
 
-cleaned_data.to_csv('path/cleaned_market_data.csv', index=False)
+cleaned_data.to_csv('Task1/cleaned_market_data.csv', index=False)
 
