@@ -1,64 +1,59 @@
 import pandas as pd
 
-file_path = 'Task1/task1_market_data.csv'
-market_data = pd.read_csv(file_path)
-
-market_data.head(), market_data.info(), market_data.describe(include='all')
+file_path = 'path'
+data = pd.read_csv(file_path)
 
 
-market_data.columns = ['Date', 'Exchange', 'Market_Type', 'Trading_Pair', 'Volume']
+
+print("Initial Data Overview:\n", data.info())
 
 
-market_data['Date'] = pd.to_datetime(market_data['Date'], errors='coerce')
-market_data['Volume'] = pd.to_numeric(market_data['Volume'], errors='coerce')
+print("\nMissing values per column:\n", data.isnull().sum())
 
 
-market_data_cleaned = market_data.dropna(subset=['Date', 'Exchange', 'Market_Type', 'Trading_Pair', 'Volume'])
-market_data_cleaned = market_data_cleaned[market_data_cleaned['Volume'] >= 0]
+cleaned_data = data.dropna()
 
 
-market_data_cleaned.info(), market_data_cleaned.head()
+cleaned_data = cleaned_data.drop_duplicates()
 
 
-total_market_volume = market_data_cleaned['Volume'].sum()
+cleaned_data['volume'] = cleaned_data['volume'].astype(float)  # Convert volume to float if needed
 
 
-bitstamp_volume = market_data_cleaned[market_data_cleaned['Exchange'] == 'bitstamp']['Volume'].sum()
-
-
+total_market_volume = cleaned_data['volume'].sum()
+bitstamp_volume = cleaned_data[cleaned_data['exchange'] == 'Bitstamp']['volume'].sum()
 market_share = (bitstamp_volume / total_market_volume) * 100
 
 
-bitstamp_trading_pairs = market_data_cleaned[market_data_cleaned['Exchange'] == 'bitstamp']['Trading_Pair'].unique()
+bitstamp_pairs = cleaned_data[cleaned_data['exchange'] == 'Bitstamp']['pair'].unique()
 
 
-addressable_market_volume = market_data_cleaned[market_data_cleaned['Trading_Pair'].isin(bitstamp_trading_pairs)]['Volume'].sum()
-
-
+addressable_market_volume = cleaned_data[cleaned_data['pair'].isin(bitstamp_pairs)]['volume'].sum()
 addressable_market_share = (bitstamp_volume / addressable_market_volume) * 100
 
 
-bitstamp_base_assets = set([pair.split('/')[0] for pair in bitstamp_trading_pairs])
+bitstamp_assets = set([pair.split('/')[0] for pair in bitstamp_pairs])
 
 
-market_coverage_volume = market_data_cleaned[market_data_cleaned['Trading_Pair'].apply(lambda x: x.split('/')[0] in bitstamp_base_assets)]['Volume'].sum()
-
-
+market_coverage_volume = cleaned_data[cleaned_data['pair'].apply(lambda x: x.split('/')[0] in bitstamp_assets)]['volume'].sum()
 market_coverage = (market_coverage_volume / total_market_volume) * 100
 
-market_share, addressable_market_share, market_coverage
 
-# ---------------------------------------------------------------
-exchange_volumes = market_data_cleaned.groupby('Exchange')['Volume'].sum().sort_values(ascending=False)
 
-top_competitors = exchange_volumes.head(5)
+competitors = cleaned_data.groupby('exchange').sum().reset_index()
+competitors = competitors[competitors['exchange'] != 'Bitstamp']  # Exclude Bitstamp for comparison
 
-competitors_data = market_data_cleaned[market_data_cleaned['Exchange'].isin(top_competitors.index)]
 
-volume_distribution = competitors_data.pivot_table(index='Trading_Pair', columns='Exchange', values='Volume', aggfunc='sum', fill_value=0)
+competitors_sorted = competitors.sort_values(by='volume', ascending=False)
+top_competitors = competitors_sorted.head(5)  # Top 5 competitors
 
-volume_distribution_normalized = volume_distribution.div(volume_distribution.sum(axis=0), axis=1) * 100
 
-top_competitors, volume_distribution_normalized.head(10)
+print("\nCleaned Data Sample:\n", cleaned_data.head())
+print("\nMarket Share of Bitstamp: {:.2f}%".format(market_share))
+print("Addressable Market Share: {:.2f}%".format(addressable_market_share))
+print("Market Coverage: {:.2f}%".format(market_coverage))
+print("\nTop 5 Competitors by Volume:\n", top_competitors)
 
+
+cleaned_data.to_csv('path/cleaned_market_data.csv', index=False)
 
