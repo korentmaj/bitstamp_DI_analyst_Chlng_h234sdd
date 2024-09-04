@@ -1,8 +1,3 @@
-# **🛑🛑🛑 VIDEO DOCUMENTATION WILL BE AVAILABLE IN 1 TO 2 HOURS. I AM SUPER SORRY FOR THE DELAY! 🛑🛑🛑**
-
-[![Link to Video](https://img.shields.io/badge/Link%20to%20Video-Click%20Here-blue)](https://link-to-video)
-
----
 
 # Bitstamp Data Intelligence Analyst Challenge
 
