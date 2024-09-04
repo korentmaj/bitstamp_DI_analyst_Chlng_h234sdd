@@ -71,7 +71,7 @@ All queries mentioned above are located in the following files within the `quest
 
 The results of each query are available in the attached video, which walks through the execution and output of each SQL query. You can access the video using the button below:
 
-[**Watch Results Video**](#) *(Link will be added here)*
+[**Watch Results Video**](https://drive.google.com/file/d/1Nloyx5M0S61npdLjUg-3pybU4LsMNlqK/view?usp=sharing)
 
 ## Conclusion
 
