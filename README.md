@@ -1,4 +1,5 @@
 
+
 # Bitstamp Data Intelligence Analyst Challenge
 
 This repository contains my solution to the Bitstamp Data Intelligence Analyst Challenge. The project consists of three tasks that test various aspects of data manipulation, analysis, and reporting.
