@@ -51,15 +51,3 @@ For this project, I chose to use **Matplotlib** instead of traditional tools lik
 3. **Flexibility**: Using Matplotlib allowed me to build a fully customizable report generator, where users can input any date or dataset, adjust the visuals, and export in the format of their choice.
 
 ---
-
-### Example Workflow:
-
-1. **Change the Date**:
-
-   generate_bitstamp_report('15/08/2024')
-   
-2. **Run the Script**:
-
-   python pltReport_generator.py
-
-3. **Find Your Report**: A new report, Report15082024.png, will be saved inside the Reports/ folder.
